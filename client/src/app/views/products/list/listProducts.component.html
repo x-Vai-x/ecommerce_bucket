@@ -1,0 +1,7 @@
+<h1>Products List</h1>
+
+<div *ngFor = 'let product of products | async'>
+	<app-view-product [product]='product' [quantity]='quantites.get(product) ?? 0' (quantityIncreased)='quantityChanged($event, true)' (quantityDecreased)='quantityChanged($event, false)'></app-view-product>
+</div>
+
+<p>Total of {{overallQuantity}} items</p>

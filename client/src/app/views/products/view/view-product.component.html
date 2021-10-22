@@ -1,0 +1,8 @@
+<p>Quantity: {{quantity}}</p>
+<button mat-button [disabled]="quantity>=10" (click)="addToBasket()">Add to basket.</button>
+<button mat-button [disabled]="quantity==0" (click)="removeFromBasket()">Remove From basket.</button>
+
+<h3>{{product?.name}}</h3>>
+<p>SKU: {{product?.sku}}</p>
+<p>Description: {{product?.description}}</p>
+<p>Price: {{product?.price ?? 0 | currency : 'GBP'}}</p>
