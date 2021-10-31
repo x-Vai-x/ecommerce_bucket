@@ -1,8 +1,22 @@
-<p>Quantity: {{quantity}}</p>
-<button mat-button [disabled]="quantity>=10" (click)="addToBasket()">Add to basket.</button>
-<button mat-button [disabled]="quantity==0" (click)="removeFromBasket()">Remove From basket.</button>
+<ng-container [ngTemplateOutlet]="viewMode"></ng-container>
 
-<h3>{{product?.name}}</h3>>
-<p>SKU: {{product?.sku}}</p>
-<p>Description: {{product?.description}}</p>
-<p>Price: {{product?.price ?? 0 | currency : 'GBP'}}</p>
+<ng-template #all>
+	<p>Quantity: {{quantity}}</p>
+	<button mat-button [disabled]="quantity>=10" (click)="addToBasket()">Add to basket.</button>
+	<button mat-button [disabled]="quantity==0" (click)="removeFromBasket()">Remove From basket.</button>
+
+	<h3>{{product?.name}}</h3>>
+	<p>SKU: {{product?.sku}}</p>
+	<p>Description: {{product?.description}}</p>
+	<p>Price: {{product?.price ?? 0 | currency : 'GBP'}}</p>
+</ng-template>
+
+<ng-template #checkout>
+	<mat-select [(value)]="quantity">
+		<mat-option *ngFor="let number of Array(10).fill().map((x,i)=>i+1)"></mat-option>
+	</mat-select>
+	<h3>{{product?.name}}</h3>>
+	<p>SKU: {{product?.sku}}</p>
+	<p>Description: {{product?.description}}</p>
+	<p>Line Price: {{(product?.price ?? 0 * quantity ?? 0) | currency : 'GBP'}}</p>
+</ng-template>

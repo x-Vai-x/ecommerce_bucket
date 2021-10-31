@@ -1,7 +1,25 @@
-<h1>Products List</h1>
+<ng-container [ngTemplateOutlet]="viewMode"></ng-container>
 
-<div *ngFor = 'let product of products | async'>
-	<app-view-product [product]='product' [quantity]='quantites.get(product) ?? 0' (quantityIncreased)='quantityChanged($event, true)' (quantityDecreased)='quantityChanged($event, false)'></app-view-product>
-</div>
+<ng-template #all>
+	<h1>Products List</h1>
 
-<p>Total of {{overallQuantity}} items</p>
+	<div *ngFor = 'let product of products | async'>
+		<app-view-product [product]='product' [quantity]='quantites.get(product) ?? 0' (quantityIncreased)='quantityChanged($event, true)' (quantityDecreased)='quantityChanged($event, false)'></app-view-product>
+	</div>
+
+	<p>Total of {{overallQuantity}} items</p>
+
+	<button mat-button><a routerLink="/products/checkout" routerLinkActive="active">PROCEED TO CHECKOUT.</a></button>
+</ng-template>
+
+<ng-template #checkout>
+	<h1>Checkout</h1>
+
+	<div *ngFor='let product of quantites.keys()'>
+		<app-view-product [product]='product' [quantity]='quantites.get(product) ?? 0' (quantityChanged)='quantityChanged($event)' [viewmode]='checkout'></app-view-product>
+	</div>
+
+	<p>Total of {{overallQuantity}} items</p>
+
+	<button mat-button><a routerLink="/products/all" routerLinkActive="active">CONTINUE SHOPPING.</a></button>
+</ng-template>

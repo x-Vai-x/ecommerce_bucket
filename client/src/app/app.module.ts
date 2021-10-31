@@ -5,7 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { ListProductsComponent, ViewProductComponent } from './views';
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
 	HttpClientModule,
 	MatButtonModule,
-	BrowserAnimationsModule
+	BrowserAnimationsModule,
+	MatSelectModule
+
   ],
   providers: [],
   bootstrap: [ListProductsComponent]

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Product } from '../../../types';
+import { ItemQuantity, Product, ViewMode } from '../../../types';
 
 @Component({
   selector: 'app-view-product',
@@ -8,10 +8,12 @@ import { Product } from '../../../types';
 })
 export class ViewProductComponent implements OnInit {
 
-  @Input() public product: Product | undefined = undefined
-  @Output() quantityIncreased = new EventEmitter<Product>(); 
-  @Output() quantityDecreased = new EventEmitter<Product>(); 
+  @Input() public product!: Product
+  @Output() quantityIncreased = new EventEmitter<Product>() 
+  @Output() quantityDecreased = new EventEmitter<Product>()
+  @Output() quantityChanged = new EventEmitter<ItemQuantity>()
   @Input() public quantity: number = 0
+  @Input() public viewMode: ViewMode = ViewMode.ALL
 
   constructor() { }
 
@@ -25,6 +27,12 @@ export class ViewProductComponent implements OnInit {
 	  if(this.quantity) {
 		  this.quantityDecreased.emit(this.product)
 	  }
+  }
+
+  public modifyQuantity() {
+	  if(this.quantity && this.quantity < 10) {
+		  this.quantityChanged.emit({ product: this.product, quantity: this.quantity })
+	  } 
   }
 
   ngOnInit(): void {

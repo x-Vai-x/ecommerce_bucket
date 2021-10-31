@@ -9,3 +9,8 @@ export interface ItemQuantity {
 	product: Product
 	quantity: number
 }
+
+export enum ViewMode {
+	ALL = "all",
+	CHECKOUT = "checkout"
+}
