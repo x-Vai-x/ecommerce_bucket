@@ -1,10 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ItemQuantity, Product, ViewMode } from '../../../types';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { ItemQuantity, Product, ViewMode } from "../../../types";
 
 @Component({
-  selector: 'app-view-product',
-  templateUrl: './view-product.component.html',
-  styleUrls: ['./view-product.component.css']
+  selector: "app-view-product",
+  templateUrl: "./view-product.component.html",
+  styleUrls: ["./view-product.component.css"]
 })
 export class ViewProductComponent implements OnInit {
 
