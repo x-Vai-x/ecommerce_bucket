@@ -9,8 +9,6 @@ import { ItemQuantity, Product, ViewMode } from '../../../types';
 export class ViewProductComponent implements OnInit {
 
   @Input() public product!: Product
-  @Output() quantityIncreased = new EventEmitter<Product>() 
-  @Output() quantityDecreased = new EventEmitter<Product>()
   @Output() quantityChanged = new EventEmitter<ItemQuantity>()
   @Input() public quantity: number = 0
   @Input() public viewMode: ViewMode = ViewMode.ALL
@@ -19,13 +17,13 @@ export class ViewProductComponent implements OnInit {
 
   public addToBasket() {
 	  if(this.quantity < 10) {
-		this.quantityIncreased.emit(this.product)
+		this.quantityChanged.emit({ product: this.product, quantity: ++this.quantity })
 	  }
   }
 
   public removeFromBasket() {
 	  if(this.quantity) {
-		  this.quantityDecreased.emit(this.product)
+		this.quantityChanged.emit({ product: this.product, quantity: --this.quantity })
 	  }
   }
 

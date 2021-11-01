@@ -23,25 +23,11 @@ export class ListProductsComponent implements OnInit {
 	  this.viewMode = this.route.snapshot.paramMap.get('viewmode') as ViewMode ?? ViewMode.ALL
   }
 
-  public quantityChanged(product: Product | ItemQuantity, increase?: boolean) {
-	if('product' in product && 'quantity' in product) {
-		this.quantities.set(product.product, product.quantity)
-	} else {
-		if(this.quantities.has(product)) {
-			const quantity = this.quantities.get(product)
-			if(increase) {
-				this.quantities.set(product, quantity + 1)
-				this.overallQuantity++
-			} else {
-				this.quantities.set(product,quantity - 1)
-				this.overallQuantity--
-			}
-		}
-		else if (increase) {
-			this.quantities.set(product, 1)
-			this.overallQuantity++
-		}
+  public quantityChanged(product: ItemQuantity) {
+	if(!this.quantities.get(product.product)) {
+		this.quantities.delete(product.product)
 	}
-	
+	this.quantities.set(product.product, product.quantity)
   }
+	
 }
