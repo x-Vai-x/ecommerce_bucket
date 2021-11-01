@@ -12,9 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     ListProductsComponent,
-    ViewProductComponent,
-	AsyncPipe,
-	CurrencyPipe
+    ViewProductComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 	MatSelectModule
 
   ],
-  providers: [],
+  providers: [AsyncPipe,CurrencyPipe],
   bootstrap: [ListProductsComponent]
 })
 export class AppModule { }
