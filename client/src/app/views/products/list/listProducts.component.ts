@@ -25,6 +25,7 @@ export class ListProductsComponent implements OnInit {
 	  this.viewMode = this.route.snapshot.params.viewmode as ViewMode ?? ViewMode.ALL
 	  const state = this.location.getState()
 	  this.quantities = (state as any).quantities ?? new Map()
+	  this.overallQuantity = (state as any).overallQuantity?? 0
   }
 
   public quantityChanged(product: ItemQuantity) {
