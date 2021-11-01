@@ -9,7 +9,7 @@
 
 	<p>Total of {{overallQuantity}} items</p>
 
-	<button mat-button><a routerLink="/products/checkout">PROCEED TO CHECKOUT.</a></button>
+	<button mat-button><a [routerLink]="['products','checkout']" [state]="{ quantities: quantities }">PROCEED TO CHECKOUT.</a></button>
 </ng-template>
 
 <ng-template #checkout>
@@ -21,5 +21,5 @@
 
 	<p>Total of {{overallQuantity}} items</p>
 
-	<button mat-button><a routerLink="/products/all">CONTINUE SHOPPING.</a></button>
+	<button mat-button><a [routerLink]="['products','all']">CONTINUE SHOPPING.</a></button>
 </ng-template>

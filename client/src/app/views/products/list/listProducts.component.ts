@@ -3,6 +3,7 @@ import { ItemQuantity, Product, ViewMode } from "../../../types";
 import { ActivatedRoute } from "@angular/router";
 import { ProductService } from "../../../services/product.service";
 import { Observable } from "rxjs";
+import { Location } from '@angular/common';
 
 @Component({
   selector: "app-list-products",
@@ -17,12 +18,13 @@ export class ListProductsComponent implements OnInit {
   public viewMode: ViewMode = ViewMode.ALL
   public eViewMode: typeof ViewMode = ViewMode
 
-  constructor(private productService : ProductService, private route: ActivatedRoute ) { }
+  constructor(private productService : ProductService, private route: ActivatedRoute, private location: Location ) { }
 
   ngOnInit(): void {
 	  this.products = this.productService.getProducts()
-	  alert(this.route.snapshot.paramMap.get("viewmode"))
-	  this.viewMode = this.route.snapshot.paramMap.get("viewmode") as ViewMode ?? ViewMode.ALL
+	  this.viewMode = this.route.snapshot.params.viewmode as ViewMode ?? ViewMode.ALL
+	  const state = this.location.getState()
+	  this.quantities = (state as any).quantities ?? new Map()
   }
 
   public quantityChanged(product: ItemQuantity) {
