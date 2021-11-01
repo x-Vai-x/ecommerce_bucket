@@ -21,8 +21,11 @@ export class ViewProductComponent implements OnInit {
 	  }
   }
 
-  public removeFromBasket() {
-	  if(this.quantity) {
+  public removeFromBasket(all: boolean = false) {
+	if (all) {
+		this.quantityChanged.emit({ product: this.product, quantity: this.quantity = 0 })	
+	}
+	if(this.quantity) {
 		this.quantityChanged.emit({ product: this.product, quantity: --this.quantity })
 	  }
   }
