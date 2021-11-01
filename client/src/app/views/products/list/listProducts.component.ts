@@ -21,11 +21,12 @@ export class ListProductsComponent implements OnInit {
 
   ngOnInit(): void {
 	  this.products = this.productService.getProducts()
+	  alert(this.route.snapshot.paramMap.get("viewmode"))
 	  this.viewMode = this.route.snapshot.paramMap.get("viewmode") as ViewMode ?? ViewMode.ALL
   }
 
   public quantityChanged(product: ItemQuantity) {
-	this.overallQuantity += (product.quantity - this.quantities.get(product.product))
+	this.overallQuantity += (product.quantity - (this.quantities.get(product.product) ?? 0))
 	if(!product.quantity) {
 		this.quantities.delete(product.product)
 	}

@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.config.json",
+    "start": "ng serve",
     "build": "ng build",
     "lint": "ng lint"
   },
   "private": true,
+  "proxy": "http://localhost:9001",
   "dependencies": {
     "@angular/animations": "~11.2.9",
     "@angular/cdk": "^12.2.10",
