@@ -8,16 +8,16 @@
 	<h3>{{product?.name}}</h3>>
 	<p>SKU: {{product?.sku}}</p>
 	<p>Description: {{product?.description}}</p>
-	<p>Price: {{product?.price ?? 0 | currency : "GBP"}}</p>
+	<p>Price: {{(product?.price || 0) | currency : "GBP"}}</p>
 </ng-template>
 
 <ng-template #checkout>
 	<mat-select [(value)]="quantity">
-		<mat-option *ngFor="let number of Array(10).fill().map((x,i)=>i+1)"></mat-option>
+		<mat-option *ngFor="let number of (Array(10).fill().map((x,i)=>i+1))"></mat-option>
 	</mat-select>
 	<h3>{{product?.name}}</h3>>
 	<p>SKU: {{product?.sku}}</p>
 	<p>Description: {{product?.description}}</p>
-	<p>Line Price: {{(product?.price ?? 0 * quantity ?? 0) | currency : "GBP"}}</p>
+	<p>Line Price: {{((product?.price || 0) * (quantity || 0)) | currency : "GBP"}}</p>
 	<button mat-button (click)="removeFromBasket(true)">Remove.</button>
 </ng-template>

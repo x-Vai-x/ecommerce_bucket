@@ -4,7 +4,7 @@
 	<h1>Products List</h1>
 
 	<div *ngFor = "let product of products | async">
-		<app-view-product [product]="product" [quantity]="quantites.get(product) ?? 0" (quantityChanged)="quantityChanged($event)"></app-view-product>
+		<app-view-product [product]="product" [quantity]="quantities.get(product) ?? 0" (quantityChanged)="quantityChanged($event)"></app-view-product>
 	</div>
 
 	<p>Total of {{overallQuantity}} items</p>
@@ -15,8 +15,8 @@
 <ng-template #checkout>
 	<h1>Checkout</h1>
 
-	<div *ngFor="let product of quantites.keys()">
-		<app-view-product [product]="product" [quantity]="quantites.get(product) ?? 0" (quantityChanged)="quantityChanged($event)" [viewmode]="checkout"></app-view-product>
+	<div *ngFor="let product of quantities.keys()">
+		<app-view-product [product]="product" [quantity]="quantities.get(product) ?? 0" (quantityChanged)="quantityChanged($event)" [viewMode]="checkout"></app-view-product>
 	</div>
 
 	<p>Total of {{overallQuantity}} items</p>

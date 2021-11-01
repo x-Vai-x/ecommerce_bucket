@@ -24,6 +24,7 @@ export class ListProductsComponent implements OnInit {
   }
 
   public quantityChanged(product: ItemQuantity) {
+	this.overallQuantity+=(product.quantity-this.quantities.get(product.product))
 	if(!product.quantity) {
 		this.quantities.delete(product.product)
 	}
