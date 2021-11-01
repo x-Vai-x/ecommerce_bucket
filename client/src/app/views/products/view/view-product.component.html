@@ -1,4 +1,4 @@
-<ng-container [ngTemplateOutlet]="viewMode"></ng-container>
+<ng-container [ngTemplateOutlet]="viewMode == eViewMode.CHECKOUT ? checkout : all"></ng-container>
 
 <ng-template #all>
 	<p>Quantity: {{quantity}}</p>
@@ -12,9 +12,9 @@
 </ng-template>
 
 <ng-template #checkout>
-	<mat-select [(value)]="quantity">
-		<mat-option *ngFor="let number of (Array(10).fill().map((x,i)=>i+1))"></mat-option>
-	</mat-select>
+	<!-- <mat-select [(value)]="quantity">
+		<mat-option *ngFor="let number of (Array(10).fill()).map((x,i)=>i+1)"></mat-option>
+	</mat-select> -->
 	<h3>{{product?.name}}</h3>>
 	<p>SKU: {{product?.sku}}</p>
 	<p>Description: {{product?.description}}</p>

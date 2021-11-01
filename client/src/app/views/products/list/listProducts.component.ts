@@ -15,6 +15,7 @@ export class ListProductsComponent implements OnInit {
   public quantities = new Map()
   public overallQuantity: number = 0
   public viewMode: ViewMode = ViewMode.ALL
+  public eViewMode: typeof ViewMode = ViewMode
 
   constructor(private productService : ProductService, private route: ActivatedRoute ) { }
 

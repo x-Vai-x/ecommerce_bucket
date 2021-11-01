@@ -1,10 +1,10 @@
-<ng-container [ngTemplateOutlet]="viewMode"></ng-container>
+<ng-container [ngTemplateOutlet]="viewMode == eViewMode.CHECKOUT ? checkout : all"></ng-container>
 
 <ng-template #all>
 	<h1>Products List</h1>
 
-	<div *ngFor = "let product of products | async">
-		<app-view-product [product]="product" [quantity]="quantities.get(product) ?? 0" (quantityChanged)="quantityChanged($event)"></app-view-product>
+	<div *ngFor = "let product of (products | async)">
+		<app-view-product [product]="product" [quantity]="quantities.has(product) ? quantities.get(product) : 0" (quantityChanged)="quantityChanged($event)"></app-view-product>
 	</div>
 
 	<p>Total of {{overallQuantity}} items</p>
@@ -16,7 +16,7 @@
 	<h1>Checkout</h1>
 
 	<div *ngFor="let product of quantities.keys()">
-		<app-view-product [product]="product" [quantity]="quantities.get(product) ?? 0" (quantityChanged)="quantityChanged($event)" [viewMode]="checkout"></app-view-product>
+		<app-view-product [product]="product" [quantity]="quantities.has(product) ? quantities.get(product) : 0" (quantityChanged)="quantityChanged($event)" [viewMode]="eViewMode.CHECKOUT"></app-view-product>
 	</div>
 
 	<p>Total of {{overallQuantity}} items</p>

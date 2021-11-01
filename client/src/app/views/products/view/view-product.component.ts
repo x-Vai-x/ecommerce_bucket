@@ -12,6 +12,7 @@ export class ViewProductComponent implements OnInit {
   @Output() quantityChanged = new EventEmitter<ItemQuantity>()
   @Input() public quantity: number = 0
   @Input() public viewMode: ViewMode = ViewMode.ALL
+  public eViewMode: typeof ViewMode = ViewMode
 
   constructor() { }
 
