@@ -22,10 +22,12 @@ export class ListProductsComponent implements OnInit {
 
   ngOnInit(): void {
 	  this.products = this.productService.getProducts()
-	  this.viewMode = this.route.snapshot.params.viewmode as ViewMode ?? ViewMode.ALL
-	  const state = this.location.getState()
-	  this.quantities = (state as any).quantities ?? new Map()
-	  this.overallQuantity = (state as any).overallQuantity?? 0
+	  this.route.params.subscribe(params => {
+		  this.viewMode = params.viewmode as ViewMode ?? ViewMode.ALL
+		  const state = this.location.getState()
+		  this.quantities = (state as any).quantities ?? new Map()
+		  this.overallQuantity = (state as any).overallQuantity?? 0
+	  })
   }
 
   public quantityChanged(product: ItemQuantity) {
@@ -33,7 +35,9 @@ export class ListProductsComponent implements OnInit {
 	if(!product.quantity) {
 		this.quantities.delete(product.product)
 	}
-	this.quantities.set(product.product, product.quantity)
+	else {
+		this.quantities.set(product.product, product.quantity)
+	}
   }
 	
 }
