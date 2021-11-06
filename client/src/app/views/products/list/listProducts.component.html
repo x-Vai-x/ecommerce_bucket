@@ -5,6 +5,7 @@
 
 	<div *ngFor = "let product of (products | async)">
 		<app-view-product [product]="product" [quantity]="quantities.has(product) ? quantities.get(product) : 0" (quantityChanged)="quantityChanged($event)"></app-view-product>
+		<br/>
 	</div>
 
 	<p>Total of {{overallQuantity}} items</p>
@@ -17,6 +18,7 @@
 
 	<div *ngFor="let product of quantities.keys()">
 		<app-view-product [product]="product" [quantity]="quantities.has(product) ? quantities.get(product) : 0" (quantityChanged)="quantityChanged($event)" [viewMode]="eViewMode.CHECKOUT"></app-view-product>
+		<br/>
 	</div>
 
 	<p>Total of {{overallQuantity}} items</p>

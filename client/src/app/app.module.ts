@@ -8,13 +8,15 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatSelectModule } from "@angular/material/select";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppComponent } from "./app.component";
+import { NumberRangePipe } from './pipes/number-range.pipe';
 
 
 @NgModule({
   declarations: [
+	AppComponent,
     ListProductsComponent,
     ViewProductComponent,
-	AppComponent
+	NumberRangePipe
   ],
   imports: [
     BrowserModule,
