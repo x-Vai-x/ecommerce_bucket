@@ -26,17 +26,17 @@ export class ListProductsComponent implements OnInit {
 		  this.viewMode = params.viewmode as ViewMode ?? ViewMode.ALL
 		  const state = this.location.getState()
 		  this.quantities = (state as any).quantities ?? new Map()
-		  this.overallQuantity = (state as any).overallQuantity?? 0
+		  this.overallQuantity = (state as any).overallQuantity ?? 0
 	  })
   }
 
   public quantityChanged(product: ItemQuantity) {
-	this.overallQuantity += (product.quantity - (this.quantities.get(product.product) ?? 0))
+	this.overallQuantity += (product.quantity - (this.quantities.get(product.product.sku) ?? 0))
 	if(!product.quantity) {
-		this.quantities.delete(product.product)
+		this.quantities.delete(product.product.sku)
 	}
 	else {
-		this.quantities.set(product.product, product.quantity)
+		this.quantities.set(product.product.sku, product.quantity)
 	}
   }
 	

@@ -11,12 +11,12 @@
 </ng-template>
 
 <ng-template #checkout>
-	<mat-select [(value)]="quantity">
-		<mat-option *ngFor="let number of 10 | numberRange"></mat-option>
-	</mat-select>
 	<h3>{{product?.name}}</h3>
 	<p>SKU: {{product?.sku}}</p>
 	<p>Description: {{product?.description}}</p>
+	<mat-select [value]="quantity" (selectionChange)="modifyQuantity($event.value)" placeholder="Select quantity.">
+		<mat-option *ngFor="let number of 10 | numberRange" [value] = "number">{{ number }}</mat-option>
+	</mat-select>
 	<p>Line Price: {{((product?.price || 0) * (quantity || 0)) | currency : "GBP"}}</p>
 	<button mat-button (click)="removeFromBasket(true)">Remove.</button>
 </ng-template>

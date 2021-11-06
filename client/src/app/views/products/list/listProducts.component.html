@@ -4,7 +4,7 @@
 	<h1>Products List</h1>
 
 	<div *ngFor = "let product of (products | async)">
-		<app-view-product [product]="product" [quantity]="quantities.has(product) ? quantities.get(product) : 0" (quantityChanged)="quantityChanged($event)"></app-view-product>
+		<app-view-product [product]="product" [quantity]="quantities.has(product.sku) ? quantities.get(product.sku) : 0" (quantityChanged)="quantityChanged($event)"></app-view-product>
 		<br/>
 	</div>
 
@@ -16,13 +16,13 @@
 <ng-template #checkout>
 	<h1>Checkout</h1>
 
-	<div *ngFor="let product of quantities.keys()">
-		<app-view-product [product]="product" [quantity]="quantities.has(product) ? quantities.get(product) : 0" (quantityChanged)="quantityChanged($event)" [viewMode]="eViewMode.CHECKOUT"></app-view-product>
+	<div *ngFor="let product of (products | async)">
+		<app-view-product *ngIf="quantities.has(product.sku)" [product]="product" [quantity]="quantities.has(product.sku) ? quantities.get(product.sku) : 0" (quantityChanged)="quantityChanged($event)" [viewMode]="eViewMode.CHECKOUT"></app-view-product>
 		<br/>
 	</div>
 
 	<p>Total of {{overallQuantity}} items</p>
 
-	<button mat-button><a [routerLink]="['/products',eViewMode.ALL]" [state]="{ quantities: quantities, overallQuantity: overallQuantity }">CONTINUE SHOPPING.</a></button>
+	<button mat-button><a [routerLink]="['/products',eViewMode.ALL]" [routerLinkActive]="['active']" [state]="{ quantities: quantities, overallQuantity: overallQuantity }">CONTINUE SHOPPING.</a></button>
 </ng-template>
 

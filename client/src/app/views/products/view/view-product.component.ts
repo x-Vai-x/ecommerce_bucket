@@ -26,14 +26,14 @@ export class ViewProductComponent implements OnInit {
 	if (all) {
 		this.quantityChanged.emit({ product: this.product, quantity: this.quantity = 0 })	
 	}
-	if(this.quantity) {
+	else if(this.quantity) {
 		this.quantityChanged.emit({ product: this.product, quantity: --this.quantity })
 	  }
   }
 
-  public modifyQuantity() {
-	  if(this.quantity && this.quantity < 10) {
-		  this.quantityChanged.emit({ product: this.product, quantity: this.quantity })
+  public modifyQuantity(quantity: number) {
+	  if(quantity && quantity < 10) {
+		  this.quantityChanged.emit({ product: this.product, quantity:  this.quantity = quantity })
 	  } 
   }
 
