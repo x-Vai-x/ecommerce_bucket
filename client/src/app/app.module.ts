@@ -7,12 +7,14 @@ import { AsyncPipe, CurrencyPipe } from "@angular/common";
 import { MatButtonModule } from "@angular/material/button";
 import { MatSelectModule } from "@angular/material/select";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { AppComponent } from "./app.component";
 
 
 @NgModule({
   declarations: [
     ListProductsComponent,
-    ViewProductComponent
+    ViewProductComponent,
+	AppComponent
   ],
   imports: [
     BrowserModule,
@@ -23,6 +25,6 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 	MatSelectModule
   ],
   providers: [AsyncPipe, CurrencyPipe],
-  bootstrap: [ListProductsComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
